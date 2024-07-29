@@ -1,5 +1,3 @@
-lst = [ "poto", "platanero", "aloe", "aloe", "aloe", "cactus", "platanero", "poto", "suculenta", "platanero", "aloe", "aloe", "poto","ficus" , "suculenta" ]
-
 def word_count(lst):
     count_results = {}
     ordered_words = []
@@ -18,4 +16,7 @@ def word_count(lst):
 
     return count_results, ordered_words
 
-print(word_count(lst))
+if __name__ == "__main__":
+    lst = [ "poto", "platanero", "aloe", "aloe", "aloe", "cactus", "platanero", "poto", "suculenta", "platanero", "aloe", "aloe", "poto","ficus" , "suculenta" ]
+    
+    print(word_count(lst))
