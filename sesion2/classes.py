@@ -3,7 +3,7 @@ class Person:
         self.name = "John"
         self.age = 36
         self.country = "USA"
-        address = "njaghasjkh"
+        address = "Blue Street, 36"
 
     def get_age(self):
         return self.age
