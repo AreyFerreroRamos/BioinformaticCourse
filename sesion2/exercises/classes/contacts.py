@@ -1,3 +1,6 @@
+def get_key(lst):
+    return lst[1]
+
 class Contacts():
     def __init__(self):
         self.contacts = {}
@@ -10,15 +13,12 @@ class Contacts():
     def show_contact(self, name):
         print(f"{name} - phone: {self.contacts[name]}")
 
-    def call_contact(self, name, x):
-        self.contact_freq[name] += x
+    def call_contact(self, name, num_calls):
+        self.contact_freq[name] += num_calls
 
     def get_contact_frequency(self):
-        def get_key(lst):
-            return lst[1]
-
         contact_names = sorted(self.contact_freq.items(), key=get_key, reverse=True)
-        return [ contact[0] for contact in contact_names ]
+        return [contact[0] for contact in contact_names]
 
 if __name__ == "__main__":
     contacts = Contacts()
@@ -27,7 +27,8 @@ if __name__ == "__main__":
     contacts.add_contact("Anna", 234543432)
     contacts.show_contact("Anna")
     contacts.call_contact("Xavi", 1)
+    contacts.call_contact("Anna", 2)
     contacts.call_contact("Elisa", 4)
     contacts.call_contact("Xavi", 2)
-    d = contacts.get_contact_frequency()
-    print(d)
+    frequencies = contacts.get_contact_frequency()
+    print(frequencies)
