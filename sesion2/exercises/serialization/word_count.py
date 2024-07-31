@@ -48,5 +48,5 @@ class WordCount():
     
 
 if __name__ == "__main__":
-    word_count = WordCount(10)
+    word_count = WordCount(100)
     print(word_count.read_words(sys.argv[1]))
