@@ -1,3 +1,4 @@
+import pickle
 import sys
 
 
@@ -43,10 +44,22 @@ class WordCount():
         for line in file:
             for word in line.split():
                 self.add_word(word)
+
+        self.get_word_frequencies()
         
-        return self.words
+        return self.words, self.count_results
+    
+    def save_word_count(self, fname):        
+        file = open(fname, 'wb')
+        pickle.dump(self.count_results, file, protocol=pickle.HIGHEST_PROTOCOL)
+        file.close()
     
 
 if __name__ == "__main__":
     word_count = WordCount(100)
-    print(word_count.read_words(sys.argv[1]))
+    
+    words, count_results = word_count.read_words(sys.argv[1])
+    print(words)
+    print(count_results)
+
+    word_count.save_word_count(sys.argv[2])
