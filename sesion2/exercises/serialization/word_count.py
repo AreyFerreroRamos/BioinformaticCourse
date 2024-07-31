@@ -49,11 +49,19 @@ class WordCount():
         
         return self.words, self.count_results
     
+
     def save_word_count(self, fname):        
         file = open(fname, 'wb')
         pickle.dump(self.count_results, file, protocol=pickle.HIGHEST_PROTOCOL)
         file.close()
     
+
+    def load_word_count(self, fname):
+        file = open(fname, 'rb')
+        self.count_results = pickle.load(file)
+        file.close()
+
+        return self.count_results
 
 if __name__ == "__main__":
     word_count = WordCount(100)
@@ -63,3 +71,5 @@ if __name__ == "__main__":
     print(count_results)
 
     word_count.save_word_count(sys.argv[2])
+
+    print(word_count.load_word_count(sys.argv[2]))
