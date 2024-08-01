@@ -61,6 +61,7 @@ class WordCount():
 
         return self.count_results
 
+
 if __name__ == "__main__":
     word_count = WordCount(100)
     
