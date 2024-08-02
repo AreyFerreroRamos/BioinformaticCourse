@@ -1,4 +1,5 @@
 import pandas as pd
+import sys
 
 
 def young_or_old(x):
@@ -9,19 +10,26 @@ def young_or_old(x):
 
  
 if __name__ == "__main__":
-    df_biostats = pd.read_csv("biostats.csv")
-    print(df_biostats)
-    
-    df_mammal_life = pd.read_csv("mammal_life.csv")
+    # Load data from mammal life file.
+    df_mammal_life = pd.read_csv(sys.argv[1])
     print(df_mammal_life)
 
-    df_biostats = df_biostats.dropna()
-
-    grouped_df = df_mammal_life.groupby("order")
+    # FIlter the species whose gestation lifetime is not recorded (negative values)
+    # and group by its order.
+    grouped_df = df_mammal_life[df_mammal_life["gestation(mo)"] >= 0].groupby("order")
     print(grouped_df)
 
+    # Calculate the mean of gestation time in the species that pertains to the same order.
     df_means = grouped_df.mean("gestation(mo)")
     print(df_means)
+
+
+    # Load data from biostats file.
+    df_biostats = pd.read_csv(sys.argv[2])
+    print(df_biostats)
+
+    # Delete rows with any inexistant entry (NaN).
+    df_biostats = df_biostats.dropna()
 
     # Calculate the mean of the height grouped by sex.
     grouped_df = df_biostats[["Sex", "Height"]].groupby("Sex")

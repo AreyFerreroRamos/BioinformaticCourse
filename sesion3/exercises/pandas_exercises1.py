@@ -8,7 +8,7 @@ def calculate_imc(df):
 
 
 if __name__ == "__main__":
-    # Load data from a file.
+    # Load data from biostats file.
     df = pd.read_csv(sys.argv[1])
     print(df)
 
